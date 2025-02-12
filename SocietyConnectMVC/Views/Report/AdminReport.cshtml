@@ -1,0 +1,148 @@
+﻿@model Report
+<div class="container mt-5">
+    <h3 class="text-center">Generate Report</h3>
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="ReportType" class="form-label">Select Report:</label>
+                <select id="ReportType" class="form-control" name="type">
+                    <option value="">Select Report</option>
+                    <option value="bills">Bills</option>
+                    <option value="visitors">Visitors</option>
+                    <option value="complaints">Complaints</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label for="StartDate" class="form-label">Start Date:</label>
+                <input type="date" id="StartDate" class="form-control" name="startdate" />
+            </div>
+
+            <div class="col-md-3">
+                <label for="EndDate" class="form-label">End Date:</label>
+                <input type="date" id="EndDate" class="form-control" name="enddate" />
+            </div>
+
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-warning w-100">Get Report</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Display Bills Report -->
+    @if (Model != null && Model.Bills != null && Model.Bills.Any())
+    {
+        <div class="mt-4">
+            <h4 class="text-center">Bills Report</h4>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Flat No</th>
+                        <th>Bill Type</th>
+                        <th>Amount</th>
+                        <th>Month</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var bill in Model.Bills)
+                    {
+                        <tr>
+                            <td>@bill.Id</td>
+                            <td>@bill.FlatNo</td>
+                            <td>@bill.BillTitle</td>
+                            <td>@bill.Amount</td>
+                            <td>@bill.Month</td>
+                            <td>@bill.CreatedAt</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 text-center">
+            <a href="@Url.Action("AdminExportToCsv", "Report", new { type = "bills", startdate = ViewData["StartDate"], enddate = ViewData["EndDate"] })" class="btn btn-success">Export Report</a>
+        </div>
+    }
+
+    <!-- Display Visitors Report -->
+    @if (Model != null && Model.Visitors != null && Model.Visitors.Any())
+    {
+        <div class="mt-4">
+            <h4 class="text-center">Visitors Report</h4>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Visitor ID</th>
+                        <th>Flat Number</th>
+                        <th>Visitor Name</th>
+                        <th>Contact Number</th>
+                        <th>Person to Meet</th>
+                        <th>Reason of Visit</th>
+                        <th>In Time</th>
+                        <th>Out Time</th>
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var visitor in Model.Visitors)
+                    {
+                        <tr>
+                            <td>@visitor.id</td>
+                            <td>@visitor.alloted_flats</td>
+                            <td>@visitor.visitor_name</td>
+                            <td>@visitor.visitor_contact</td>
+                            <td>@visitor.meet_to</td>
+                            <td>@visitor.purpose</td>
+                            <td>@visitor.check_in_dt</td>
+                            <td>@visitor.check_out_dt</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 text-center">
+            <a href="@Url.Action("AdminExportToCsv", "Report", new { type = "visitors", startdate = ViewData["StartDate"], enddate = ViewData["EndDate"] })" class="btn btn-success">Export Report</a>
+        </div>
+    }
+
+    <!-- Display Complaints Report -->
+    @if (Model != null && Model.Complaints != null && Model.Complaints.Any())
+    {
+        <div class="mt-4">
+            <h4 class="text-center">Complaints Report</h4>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User Name</th>
+                        <th>Flat Number</th>
+                        <th>Complaint</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var complaint in Model.Complaints)
+                    {
+                        <tr>
+                            <td>@complaint.Id</td>
+                            <td>@complaint.User_Email</td>
+                            <td>@complaint.AllotedFlat</td>
+                            <td>@complaint.Description</td>
+                            <td>@complaint.Status</td>
+                            <td>@complaint.CreatedAt</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 text-center">
+            <a href="@Url.Action("AdminExportToCsv", "Report", new { type = "complaints", startdate = ViewData["StartDate"], enddate = ViewData["EndDate"] })" class="btn btn-success">Export Report</a>
+        </div>
+    }
+</div>

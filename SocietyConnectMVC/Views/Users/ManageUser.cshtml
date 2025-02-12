@@ -1,0 +1,95 @@
+﻿
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .profile-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+    }
+
+    .profile-image {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 50%;
+        margin-top: 10px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #000;
+    }
+
+    h2 {
+        color: #000;
+        margin-bottom: 20px;
+        font-weight: bold;
+        border-bottom: 3px solid #ffc107;
+        display: inline-block;
+        padding-bottom: 10px;
+    }
+
+    .highlight {
+        color: #ffc107;
+    }
+</style>
+
+@model User
+
+<div class="container profile-container">
+    <h2 class="text-center">Manage <span class="highlight">Profile</span></h2>
+
+    <form asp-controller="Users" asp-action="ManageUser" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Name">Name:</label>
+                    <input asp-for="Name" class="form-control" id="Name" />
+                    @*         <span asp-validation-for="Name" class="text-danger"></span> *@
+                </div>
+
+                <div class="form-group">
+                    <label for="Email">Email Id:</label>
+                    <input asp-for="Email" readonly type="email" class="form-control" id="Email" />
+                    @*       <span asp-validation-for="Email" class="text-danger"></span> *@
+                </div>
+
+                <div class="form-group">
+                    <label for="CreatedAt">CreatedAt :</label>
+                    <input asp-for="CreatedAt" readonly class="form-control" id="CreatedAt" />
+                    @*                     <span asp-validation-for="Role" class="text-danger"></span> *@
+                </div>
+
+                <div class="form-group">
+                    <label for="pass">Change Password:</label>
+                    <input name="pass" type="password" class="form-control" id="pass" />
+                    @*                     <span asp-validation-for="Role" class="text-danger"></span> *@
+                </div>
+
+
+            </div>
+
+            <div class="col-md-6 text-center">
+                <label>Image:</label><br />
+                @if (Model.profile_image != null)
+                {
+                    <img src="@Model.profile_image" alt="User Image" class="profile-image" />
+                }
+                else
+                {
+                    <img src="https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_male_user-512.png" alt="Default Image" class="profile-image" />
+                }
+            </div>
+        </div>
+
+        <div class="form-group mt-4 text-center">
+            <button type="submit" class="btn btn-danger">Update Profile</button>
+        </div>
+    </form>
+</div>

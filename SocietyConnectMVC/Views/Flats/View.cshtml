@@ -1,0 +1,38 @@
+﻿@model Flat
+
+<div class="container mt-5">
+    <h2 class="text-center">Flat Details</h2>
+    <div class="card">
+        <div class="card-header">
+            <h4>Flat Information</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td><strong>Flat Number</strong></td>
+                        <td>@Model.flat_no</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Floor Number</strong></td>
+                        <td>@Model.floor_no</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Block Number</strong></td>
+                        <td>@Model.block_no</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flat Type</strong></td>
+                        <td>@Model.flat_type</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <a asp-controller="Flats" asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>

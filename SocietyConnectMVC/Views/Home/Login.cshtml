@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>SocietyConnect - Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('@Url.Content("~/assets/img/hero-bg.jpg")') no-repeat center;
+            background-size: cover;
+            margin: 0;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Darken the background */
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        .login-title {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #ffc451;
+        }
+
+        .login-container .btn-primary {
+            width: 100%;
+            font-weight: bold;
+            background-color: #ffc451;
+            border: none;
+        }
+
+            .login-container .btn-primary:hover {
+                background-color: #FFA500;
+            }
+
+        .login-container .form-text {
+            text-align: center;
+            margin-top: 1rem;
+            color: #f5f5f5;
+        }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            background-color: black;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+            .google-btn:hover {
+                background-color: #ffc451;
+            }
+
+            .google-btn i {
+                margin-right: 8px;
+            }
+
+            .google-btn .google-icon {
+                font-size: 18px;
+            }
+
+    </style>
+</head>
+<body>
+    <partial name="noti"></partial>
+    <form method="post">
+        <div>
+            <div class="login-container">
+                <h2 class="login-title">Welcome to SocietyConnect</h2>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" name="email" class="form-control" placeholder="Enter your email" />
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="pass" class="form-control" placeholder="Enter your password" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+
+                <a asp-action="OAuthLogin" class="google-btn">
+                    <i class="fab fa-google google-icon"></i> Sign in with Google
+                </a>
+
+            </div>
+        </div>
+    </form>
+</body>
+</html>

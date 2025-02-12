@@ -1,0 +1,100 @@
+﻿
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Flat Allotment</h2>
+
+    <form method="post" asp-action="Create">
+        <div class="form-group">
+            <label for="DropDownListUsers">User:</label>
+            <select id="DropDownListUsers" name="AllottedTo" class="form-control" asp-items="ViewBag.Users">
+                <option value="">Select User</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="DropDownListFlats">Flat Number:</label>
+            <select id="DropDownListFlats" name="FlatNo" class="form-control" asp-items="ViewBag.Flats">
+                <option value="">Select Flat</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="TextBox1">Floor No:</label>
+            <input type="text" id="TextBox1" name="FloorNo" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="TextBox2">Block No:</label>
+            <input type="text" id="TextBox2" name="BlockNo" class="form-control" readonly />
+        </div>
+
+        <div class="form-group">
+            <label for="TextBox3">Flat Type:</label>
+            <input type="text" id="TextBox3" name="FlatType" class="form-control" readonly />
+        </div>
+
+
+        <div class="form-group">
+            <label for="TextBoxMoveInDate">Move-In Date:</label>
+            <input type="date" id="TextBoxMoveInDate" name="MoveInDt" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success btn-lg w-100 mt-3">Allocate Flat</button>
+    </form>
+</div>
+
+@* Custom styling for form elements *@
+<style>
+    .container {
+        max-width: 600px;
+    }
+
+    h2 {
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #555555;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+        }
+
+            .form-group input:focus,
+            .form-group select:focus {
+                border-color: #2980B9;
+                outline: none;
+            }
+
+    .btn-submit {
+        padding: 15px;
+        background-color: #ffc451;
+        color: white;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-submit:hover {
+            background-color: #e1a639;
+        }
+</style>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/sendmail.js"></script>

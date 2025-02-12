@@ -1,0 +1,333 @@
+﻿@{
+    var userEmail = Context.Session.GetString("UserEmail");
+    var userName = Context.Session.GetString("UserName");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SocietyConnectMVC</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SocietyConnectMVC.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #FFFFF0;
+            padding: 15px;
+            border-bottom: 2px solid #444; /* Added border to navbar */
+        }
+
+        .navbar-btn {
+            box-shadow: none;
+            outline: none !important;
+            border: none;
+        }
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Sidebar styles */
+        #sidebar {
+            width: 250px;
+            background: #000;
+            color: white;
+            transition: all 0.3s;
+        }
+
+            #sidebar .sidebar-header {
+                padding: 20px;
+                background: #222;
+                text-align: center;
+            }
+
+            /* Sidebar List items */
+            #sidebar ul {
+                padding: 0;
+                list-style: none;
+            }
+
+                #sidebar ul li {
+                    padding: 10px;
+                    font-size: 1.1em;
+                }
+
+                    #sidebar ul li a {
+                        color: white;
+                        text-decoration: none;
+                        display: block;
+                    }
+
+                        /* Hover effect on list items */
+                        #sidebar ul li a:hover {
+                            background: #ffc451;
+                            color: black;
+                        }
+
+            /* Hide sidebar when not active */
+            #sidebar.active {
+                margin-left: -250px;
+            }
+
+        #content {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            transition: all 0.3s;
+        }
+
+        #sidebarCollapse {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 1.5em;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: #444;
+        }
+
+            .navbar .navbar-nav .nav-link:hover {
+                color: #ffc451;
+            }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .social-logo img {
+            width: 40px;
+        }
+
+        .notification-icon {
+            color: #444;
+            font-size: 1.5em;
+            position: relative;
+            cursor: pointer;
+        }
+
+            .notification-icon:hover {
+                color: #ffc451;
+            }
+
+            /* Styling for notification badge */
+            .notification-icon .badge {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background: #ffc451;
+                color: black;
+                border-radius: 50%;
+                padding: 4px 7px;
+                font-size: 0.7em;
+            }
+
+        #content {
+            width: 100%;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .notification-link {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+            .notification-link:hover {
+                background-color: #f0f0f0;
+            }
+
+        .notification-text {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Arrow styling */
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        /* Rotate arrow when the dropdown is open */
+        #manageProfileMenu.show + .arrow {
+            transform: rotate(180deg);
+        }
+
+    </style>
+</head>
+<body>
+    <partial name="noti"></partial>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img alt="Profile Photo" src="https://cdn1.iconfinder.com/data/icons/website-internet/48/website_-_male_user-512.png" class="profile-img" />
+
+                <BR />
+                <h5 style="color: #ffc451;">@userName</h5>
+            </div>
+            
+            <ul>
+                @if (userEmail.Equals("admin@gmail.com"))
+                {
+                    <li><a asp-controller="DashBoard" asp-action="AdminDb">Home</a></li>
+                    <li><a asp-controller="Users" asp-action="Index">Users</a></li>
+                    <li><a asp-controller="Flats" asp-action="Index">Flats</a></li>
+                    <li><a asp-controller="FlatAllotment" asp-action="Allotments">Allotments</a></li>
+                    <li><a asp-controller="Bills" asp-action="Index">Bills</a></li>
+                    <li><a asp-controller="Complaints" asp-action="Index">Complaints</a></li>
+                    <li><a asp-controller="Visitors" asp-action="ViewVisitor">Visitors</a></li>
+                    <li><a asp-controller="Report" asp-action="AdminReport">Report</a></li>
+                }
+                else
+                {
+                    <li><a asp-controller="DashBoard" asp-action="UserDb">Home</a></li>
+                    <li><a asp-controller="Users" asp-action="ManageUser">Manage Profile</a></li>
+                    <li><a asp-controller="Bills" asp-action="UserBills">Bills</a></li>
+                    <li><a asp-controller="UserComplaints" asp-action="Index">Complaints</a></li>
+                    <li><a asp-controller="UserVisitor" asp-action="ViewUserVisitor">Visitors</a></li>
+                    <li><a asp-controller="Report" asp-action="UserReport">Report</a></li>
+                }
+            </ul>
+        </nav>
+
+        <!-- Content Area -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info" style="background-color: #343a40;">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <div class="ml-auto">
+                        <img src="@Url.Content("~/assets/img/image.png")" alt="Logo" style="height: 40px; margin-left: 20px;">
+
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown">
+                              
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell" style="font-size: 24px; position: relative;"></i>
+                                    
+                                    <span id="notification-count" class="badge badge-danger" style="position: absolute; top: 0; right: 0; font-size: 12px;">0</span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" id="notification-menu" aria-labelledby="navbarDropdown" style="max-height: 300px; overflow-y: auto; width: 300px;">
+                                   
+                                    <h6 class="dropdown-header text-primary">Notifications</h6>
+                                    <div class="dropdown-divider"></div>
+                                    <p class="dropdown-item text-muted">No new notifications</p>
+                                </div>
+                            </li>
+
+
+
+                            <li class="nav-item" style="margin-left: 15px;">
+                                <a class="btn btn-danger" asp-controller="Home" asp-action="Logout">Logout</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container">
+                <div id="pageContent">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+
+            fetchNotifications();
+
+            function fetchNotifications() {
+                var email = '@userEmail';
+                $.ajax({
+                    url: '/Notifications/GetNotifications?email=' + email,
+                    type: 'GET',
+                    success: function (data) {
+                        var notificationCount = data.length;
+                        $('#notification-count').text(notificationCount); 
+
+                        var notificationMenu = $('#notification-menu');
+                        notificationMenu.empty();
+
+                        if (notificationCount > 0) {
+                           
+                            data.forEach(function (notification) {
+                                var truncatedMessage = notification.message.length > 50
+                                    ? notification.message.substring(0, 50) + '...' 
+                                    : notification.message;
+
+                                var notificationItem = `
+                                <a href="${notification.url}" class="dropdown-item" data-id="${notification.id}" title="${notification.message}">
+                                    ${truncatedMessage}
+                                </a>`;
+                                notificationMenu.append(notificationItem);
+                            });
+
+                            $('#notification-menu .dropdown-item').on('click', function (e) {
+                                e.preventDefault(); 
+                                var notificationId = $(this).data('id');
+                                var url = $(this).attr('href');
+
+                                
+                                $.post('/Notifications/MarkAsRead', { notificationId: notificationId })
+                                    .done(function () {
+                                        window.location.href = url; 
+                                    })
+                                    .fail(function () {
+                                        console.error('Failed to mark notification as read');
+                                    });
+                            });
+                        } else {
+                           
+                            notificationMenu.append('<p class="dropdown-item text-muted">No new notifications</p>');
+                        }
+                    },
+                    error: function () {
+                        console.error('Failed to fetch notifications');
+                    }
+                });
+            }
+        });
+
+        
+
+
+
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

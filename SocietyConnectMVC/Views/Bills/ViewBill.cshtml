@@ -1,0 +1,85 @@
+﻿
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .profile-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+    }
+
+    .profile-image {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 50%;
+        margin-top: 10px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #000;
+    }
+
+    h2 {
+        color: #000;
+        margin-bottom: 20px;
+        font-weight: bold;
+        border-bottom: 3px solid #ffc107;
+        display: inline-block;
+        padding-bottom: 10px;
+    }
+
+    .highlight {
+        color: #ffc107;
+    }
+</style>
+
+@model Bill
+
+<div class="container profile-container">
+    <h2 class="text-center">View <span class="highlight">Bill</span></h2>
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="Name">Bill Tittle:</label>
+                    <input asp-for="BillTitle" readonly class="form-control" id="Name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="Email">Flat No:</label>
+                    <input asp-for="FlatNo" readonly type="email" class="form-control" id="Email" />
+                </div>
+
+                <div class="form-group">
+                    <label for="Role">Amount :</label>
+                    <input asp-for="Amount" readonly class="form-control" id="Role" />
+                </div>
+
+                <div class="form-group">
+                    <label for="Role">Month :</label>
+                    <input asp-for="Month" readonly class="form-control" id="Role" />
+                </div>
+
+                <div class="form-group">
+                    <label for="Role">Paid Amount :</label>
+                    <input asp-for="Paid_Amount" readonly class="form-control" id="Role" />
+                </div>
+
+                <div class="form-group">
+                    <label for="Role">Created At :</label>
+                    <input asp-for="CreatedAt" readonly class="form-control" id="Role" />
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+</div>

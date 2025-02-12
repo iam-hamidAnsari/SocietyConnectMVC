@@ -1,0 +1,162 @@
+﻿@model Complaint
+<style>
+    .complaint-container {
+        margin: 40px auto;
+        max-width: 800px;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .complaint-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .complaint-section {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .complaint-section label {
+        font-weight: bold;
+        width: 150px;
+    }
+
+    .complaint-value {
+        flex: 1;
+        font-size: 16px;
+    }
+
+    .comment {
+        background-color: #f5f6fa;
+        padding: 16px;
+        border-radius: 8px;
+        border-left: 4px solid #007bff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 16px;
+    }
+
+    .comment-date {
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 6px;
+        font-style: italic;
+        display: block;
+    }
+
+    .comment-text {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+    }
+
+    .master-comment-section {
+        margin-top: 24px;
+        padding-top: 24px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .master-comment-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 16px;
+    }
+</style>
+
+<div class="complaint-container">
+    <div class="complaint-title">View Complaint</div>
+
+    <div class="complaint-section">
+        <label>User Name:</label>
+        <span class="complaint-value">@Model.User_Email</span>
+    </div>
+
+    <div class="complaint-section">
+        <label>Flat Number:</label>
+        <span class="complaint-value">@Model.AllotedFlat</span>
+    </div>
+
+    <div class="complaint-section">
+        <label>Complaint Details:</label>
+        <span class="complaint-value">@Model.Description</span>
+    </div>
+
+    <div class="complaint-section">
+        <label>Status:</label>
+        <span class="complaint-value">
+            @if (@Model.Status == "Pending")
+            {
+                <span class="badge badge-warning">@Model.Status</span>
+            }
+            else if (@Model.Status == "in progress")
+            {
+            
+
+                <span class="badge badge-primary">@Model.Status</span>
+            }
+            else
+            {
+                <span class="badge badge-success">@Model.Status</span>
+            }
+        </span>
+    </div>
+
+    <div class="master-comment-section">
+        <div class="master-comment-title">Master Comments</div>
+        @if (Model.comments != null && Model.comments.Any())
+        {
+           
+                <div class="comment">
+                    <span class="comment-date">Comment Date & Time: @Model.ResolvedAt</span>
+                    <div class="comment-text">Comment: @Model.comments</div>
+            </div>
+            if (Model.Status == "in progress")
+            {
+                <form asp-action="UpdateStatus" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div id="statusSection" style="margin-bottom:16px">
+                        <label style="display:block;font-weight: bold;width: 150px">Complaint Status</label>
+                        <select id="DropDownList1" asp-for="Status" class="form-control">
+                            <option value="in progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
+                        </select>
+                    </div>
+
+                    <div id="submitButtonSection">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+               </form>
+            }
+
+        }
+        else
+        {
+            <form asp-action ="UpdateStatus" method="post">
+                <input type="hidden" asp-for="Id"/>
+            <div id="statusSection" style="margin-bottom:16px">
+                <label style="display:block;font-weight: bold;width: 150px">Complaint Status</label>
+                <select id="DropDownList1" asp-for="Status" class="form-control">
+                    <option value="Pending">Pending</option>
+                    <option value="in progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                </select>
+            </div>
+
+            <div id="commentSection" style="margin-bottom:16px">
+                <label style="font-weight: bold;width: 150px;">Master Comment</label>
+                <textarea class="form-control" id="txtMasterComment" asp-for="comments" rows="4" placeholder="Enter Comment..."></textarea>
+            </div>
+
+            <div id="submitButtonSection">
+                <button type="submit" class="btn btn-warning">Submit</button>
+            </div>
+            </form>
+        }
+    </div>
+
+    
+</div>

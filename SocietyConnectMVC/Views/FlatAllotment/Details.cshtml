@@ -1,0 +1,37 @@
+﻿@model FlatAlltmnt
+
+
+<div class="container mt-5">
+    <h2 class="text-center">Alloted Flat Details</h2>
+    <div class="card">
+        <div class="card-header">
+            <h4>Flat Information</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td><strong>Username</strong></td>
+                        <td>@Model.AllottedTo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flat Number</strong></td>
+                        <td>@Model.FlatNo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Move In Date</strong></td>
+                        <td>@Model.MoveInDt</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Move Out Date</strong></td>
+                        <td>@Model.MoveOutDt</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <a asp-action="Allotments" class="btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+

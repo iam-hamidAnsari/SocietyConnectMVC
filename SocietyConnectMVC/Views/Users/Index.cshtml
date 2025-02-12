@@ -1,0 +1,106 @@
+﻿
+
+@model List<User>
+
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4" style="color: black;">User Management</h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center">
+            <form method="post" class="d-flex">
+                <input type="text" placeholder="Search user" class="form-control me-2" name="search" style="width: 188px;" />
+                <button type="submit" class="btn btn-secondary">Search</button>
+            </form>
+        </div>
+        <a class="btn btn-success" asp-action="AddUser" asp-controller="Users">Add User</a>
+    </div>
+
+
+
+    <div class="card shadow-lg p-4">
+        <table class="table styled-gridview">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model) 
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>@user.role</td>
+                        <td>@user.CreatedAt</td>
+                        <td>
+                            <div class="d-flex justify-content-around">
+                                <a class="btn btn-info btn-sm mr-1" asp-controller="Users" asp-action="ViewUser" asp-route-id="@user.Id">View</a>
+                                <a class="btn btn-warning btn-sm mr-1" asp-controller="Users" asp-action="EditUser" asp-route-id="@user.Id">Edit</a>
+                                <a class="btn btn-danger btn-sm" asp-controller="Users" asp-action="DeleteUser" asp-route-id="@user.Id"
+                                   onclick="return confirm('Do You Want to Delete this record ?')">
+                                    Delete
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @if (!Model.Any())
+        {
+            <label id="lblNoRecords" class="text-center">No records found.</label>
+        }
+    </div>
+</div>
+
+<style>
+    .styled-gridview {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .styled-gridview th {
+        background-color: black;
+        color: white;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+    }
+
+    .styled-gridview td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+
+    .styled-gridview tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    .styled-gridview .btn {
+        padding: 4px 8px;
+        font-size: 14px;
+    }
+
+ 
+    #lblNoRecords {
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        color: #999;
+        padding: 10px;
+    }
+</style>
+

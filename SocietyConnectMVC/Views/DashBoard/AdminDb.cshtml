@@ -1,0 +1,131 @@
+﻿
+<style>
+    /* Card styling for a cleaner look */
+    .card {
+        background-color: #f8f9fa; /* Light background */
+        color: #333; /* Darker text color for better readability */
+        text-align: center;
+        padding: 25px;
+        border-radius: 12px;
+        margin: 15px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #495057; /* Darker shade for contrast */
+        margin-bottom: 15px;
+    }
+
+    .card h5 {
+        font-size: 32px;
+        font-weight: bold;
+        color: #007bff; /* Highlighted color for main value */
+        margin-top: 10px;
+    }
+
+    .card p {
+        color: #6c757d;
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    /* Custom colors for each card */
+    .card-blue {
+        border-top: 5px solid #007bff; /* Subtle colored border */
+    }
+
+    .card-green {
+        border-top: 5px solid #28a745;
+    }
+
+    .card-teal {
+        border-top: 5px solid #17a2b8;
+    }
+
+    /* Grid layout for cards */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    /* Ensure each card takes up 1/3 of the row space */
+    .col-md-4 {
+        flex: 1 1 calc(33.333% - 30px); /* 3 cards per row with some margin */
+        max-width: calc(33.333% - 30px);
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+
+</style>
+@model Analytics
+<h2 class="text-center mt-4">Welcome to SocietyConnect</h2>
+
+
+    <div class="row">
+        <!-- Card 1: Total Flats -->
+        <div class="col-md-4">
+            <div class="card card-blue">
+                <h3>Total Flats</h3>
+                <h5>@Model.TotalFlats</h5>
+                <p>Total number of flats in the society.</p>
+            </div>
+        </div>
+
+        <!-- Card 2: Total Bills -->
+        <div class="col-md-4">
+            <div class="card card-green">
+                <h3>Total Bills</h3>
+                <h5>@Model.TotalBills</h5>
+                <p>Total bills issued.</p>
+            </div>
+        </div>
+
+        <!-- Card 3: Total Allotments -->
+        <div class="col-md-4">
+            <div class="card card-teal">
+                <h3>Total Allotments</h3>
+                <h5>@Model.TotalAllotments</h5>
+                <p>Total allotments in the society.</p>
+            </div>
+        </div>
+  </div>
+
+    <div class="row">
+        <!-- Card 4: In-Process Complaints -->
+        <div class="col-md-4">
+            <div class="card card-blue">
+                <h3>In-Process Complaints</h3>
+                <h5>@Model.InProcessComplaints</h5>
+                <p>Total complaints currently being processed.</p>
+            </div>
+        </div>
+
+        <!-- Card 5: Resolved Complaints -->
+        <div class="col-md-4">
+            <div class="card card-green">
+                <h3>Resolved Complaints</h3>
+                <h5>@Model.ResolvedComplaints</h5>
+                <p>Total complaints resolved successfully.</p>
+            </div>
+        </div>
+
+        <!-- Card 6: Total Complaints -->
+        <div class="col-md-4">
+            <div class="card card-teal">
+                <h3>Total Complaints</h3>
+                <h5>@Model.TotalComplaints</h5>
+                <p>Total complaints registered.</p>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,99 @@
+﻿
+@model Bill
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .profile-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .profile-image {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 50%;
+        margin-top: 10px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    h2 {
+        color: #000;
+        margin-bottom: 20px;
+        font-weight: bold;
+        border-bottom: 3px solid #ffc107;
+        display: inline-block;
+        padding-bottom: 10px;
+    }
+
+    .highlight {
+        color: #ffc107;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+
+    .form-group input {
+        margin-bottom: 15px;
+    }
+</style>
+
+
+
+<form method="post">
+    <div class="container profile-container">
+        <h2 class="text-center">Add <span class="highlight">Bill</span></h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="BillTitle" class="form-label">Bill Title</label>
+                    <input type="text" id="BillTitle" asp-for="BillTitle" class="form-control" placeholder="Enter Bill Title" />
+                </div>
+
+                <div class="form-group">
+                    <label for="FlatNo" class="form-label">Flat No</label>
+                    <select id="FlatNo" asp-for="FlatNo" asp-items="ViewBag.FlatNumbers" class="form-control">
+                        <option value="">Select Flat</option>
+                        @*                 @foreach (var flat in ViewBag.FlatList as List<SelectListItem>)
+                        {
+                        <option value="@flat.Value">@flat.Text</option>
+                        } *@
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Amount" class="form-label">Amount</label>
+                    <input type="text" id="Amount" asp-for="Amount" class="form-control" placeholder="Enter Bill Amount" />
+                </div>
+                <div class="form-group">
+                    <label for="Month" class="form-label">Month</label>
+                    <input type="month" id="Month" asp-for="Month" class="form-control" />
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success">Add Bill</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,133 @@
+﻿@model Visitor
+
+<style>
+    .content {
+        max-width: 500px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .visitor-detail {
+        font-weight: normal;
+        color: #333;
+        font-size: 1rem;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+    .btn-warning {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #ffc451;
+        border: none;
+        border-radius: 5px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-warning:hover {
+            background-color: #0056b3;
+        }
+
+    .message {
+        text-align: center;
+        font-size: 1rem;
+        margin-top: 15px;
+        color: green;
+        display: none;
+    }
+</style>
+
+<div class="content">
+    <h2>View Visitor</h2>
+
+    <form method="post" asp-action="UpdateVisitorCheckOutDate">
+        <div class="visitor-detail">
+            <label>Visitor Name:</label> @Model.visitor_name
+        </div>
+        <div class="visitor-detail">
+            <label>Flat Number:</label> @Model.alloted_flats
+        </div>
+        <div class="visitor-detail">
+            <label>Phone Number:</label> @Model.visitor_contact
+        </div>
+        <div class="visitor-detail">
+            <label>Person to Meet:</label> @Model.meet_to
+        </div>
+        <div class="visitor-detail">
+            <label>Reason for Visit:</label> @Model.purpose
+        </div>
+        <div class="visitor-detail">
+            <label>Check-In Date/Time:</label> @Model.check_in_dt
+        </div>
+
+        @if (Model.check_out_dt != null)
+        {
+            <div class="visitor-detail">
+                <label>Check-Out Date/Time:</label> @Model.check_out_dt
+            </div>
+        }
+        else
+        {
+            <div class="visitor-detail">
+                <label>Check-Out Date/Time:</label>
+                <input type="datetime-local" name="CheckOutDate" class="form-control" value="@Model.check_out_dt" />
+            </div>
+
+            <!-- Hidden Field for Visitor ID -->
+            <input type="hidden" name="VisitorId" value="@Model.id" />
+
+            <!-- Submit Button to Update Data -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-warning">Submit</button>
+            </div>
+
+        }
+
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="message">
+            @ViewBag.Message
+        </div>
+    }
+</div>
+
+@* <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var checkOutContainer = document.getElementById('checkOutContainer');
+        var checkOutField = document.getElementById('txtCheckOutDT');
+
+        if (!checkOutField.value) {
+            checkOutContainer.style.display = 'block';
+        }
+    });
+</script> *@

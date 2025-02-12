@@ -1,0 +1,140 @@
+﻿@model Visitor
+
+<style>
+
+    .form-container {
+        width: 100%;
+        max-width: 700px;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    h2 {
+        text-align: center;
+        color: #333;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+        border-bottom: 3px solid black;
+        padding-bottom: 10px;
+    }
+
+
+    .message-label {
+        display: block;
+        text-align: center;
+        font-size: 1rem;
+        color: green;
+        margin-bottom: 15px;
+    }
+
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+
+    input[type="text"], input[type="datetime-local"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+        input[type="text"]:focus, input[type="datetime-local"]:focus {
+            border-color: #ffc451;
+        }
+
+
+    .btn-submit {
+        background-color: #ffc451;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        width: 100px;
+    }
+
+        .btn-submit:hover {
+            background-color: #e6a837;
+        }
+</style>
+
+<div class="form-container">
+    <h2>Edit Visitor</h2>
+
+
+    @if (ViewBag.Message != null)
+    {
+        <label class="message-label">@ViewBag.Message</label>
+    }
+
+    <form action="/UserVisitor/Edit" method="post">
+        <input type="hidden" name="id" value="@Model.id" />
+        <input type="hidden" name="alloted_flats" value="@Model.alloted_flats" />
+        <input type="hidden" name="createdAt" value="@Model.createdAt" />
+
+
+        <div class="form-group">
+            <label for="visitor_name">Visitor Name:</label>
+            <input type="text" id="visitor_name" name="visitor_name" value="@Model.visitor_name" />
+        </div>
+
+
+        <div class="form-group">
+            <label for="visitor_contact">Phone Number:</label>
+            <input type="text" id="visitor_contact" name="visitor_contact" value="@Model.visitor_contact" />
+        </div>
+
+
+        <div class="form-group">
+            <label for="meet_to">Person to Meet:</label>
+            <input type="text" id="meet_to" name="meet_to" value="@Model.meet_to" />
+        </div>
+
+
+        <div class="form-group">
+            <label for="purpose">Purpose:</label>
+            <input type="text" id="purpose" name="purpose" value="@Model.purpose" />
+        </div>
+
+
+        <div class="form-group">
+            <label for="check_in_dt">Check-In Date/Time:</label>
+            <input type="datetime-local" id="check_in_dt" name="check_in_dt"
+                   value="@Model.check_in_dt" />
+        </div>
+
+
+        <div class="form-group">
+            <label for="check_out_dt">Check-Out Date/Time:</label>
+            <input type="datetime-local" id="check_out_dt" name="check_out_dt"
+                   value="@Model.check_out_dt" />
+        </div>
+
+
+        <div class="form-group">
+            <button type="submit" class="btn-submit">Update</button>
+        </div>
+    </form>
+</div>

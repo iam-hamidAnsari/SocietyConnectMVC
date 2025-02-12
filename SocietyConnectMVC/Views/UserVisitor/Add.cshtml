@@ -1,0 +1,47 @@
+﻿@model Visitor
+
+<div class="container mt-4">
+    <h2>Add Visitor</h2>
+
+    <form asp-action="Add" asp-controller="UserVisitor" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="FlatNumber">Flat Number:</label>
+            <select id="FlatNumber" asp-for="alloted_flats" asp-items="ViewBag.FlatNumbers" class="form-control">
+                <option value="">-- Select Flat --</option>
+            </select>
+            <span asp-validation-for="alloted_flats" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="VisitorName">Visitor Name:</label>
+            <input type="text" id="VisitorName" asp-for="visitor_name" class="form-control" />
+            <span asp-validation-for="visitor_name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="PhoneNumber">Phone Number:</label>
+            <input type="text" id="PhoneNumber" asp-for="visitor_contact" class="form-control" />
+            <span asp-validation-for="visitor_contact" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="MeetTo">Person to Meet:</label>
+            <input type="text" id="MeetTo" asp-for="meet_to" class="form-control" />
+            <span asp-validation-for="meet_to" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Purpose">Reason for Visit:</label>
+            <input type="text" id="Purpose" asp-for="purpose" class="form-control" />
+            <span asp-validation-for="purpose" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="CheckInDt">Check-in Date/Time:</label>
+            <input type="datetime-local" id="CheckInDt" asp-for="check_in_dt" class="form-control" />
+            <span asp-validation-for="check_in_dt" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-warning mt-3" id="btnAddVisitor">Add Visitor</button>
+    </form>
+</div>

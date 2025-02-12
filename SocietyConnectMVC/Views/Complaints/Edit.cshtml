@@ -1,0 +1,45 @@
+﻿@model Complaint
+
+
+<style>
+    .form-container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 500px;
+        margin: 20px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+        color: #fdd835;
+        border-bottom: 2px solid #121212;
+        font-size: 24px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        padding-bottom: 6px;
+    }
+
+    .editContainer {
+        margin-bottom: 16px;
+        margin-top: 16px;
+    }
+</style>
+
+<div class="form-container">
+    <h3>Edit Complaint Details</h3>
+
+    @using (Html.BeginForm("Edit", "Complaints", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <div class="editContainer">
+            <label for="Complaint_Type">Complaint Details:</label>
+            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = "4" })
+        </div>
+
+        <div class="editContainer">
+            <button type="submit" class="btn btn-primary">Edit Details</button>
+        </div>
+    }
+</div>
